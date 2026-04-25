@@ -6,7 +6,7 @@
 /*   By: vpildaer <vpildaer@student.42belgium.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 11:27:44 by vpildaer          #+#    #+#             */
-/*   Updated: 2026/04/25 12:18:31 by vpildaer         ###   ########.fr       */
+/*   Updated: 2026/04/25 14:15:18 by vpildaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_next_line(int fd)
 	char			*line;
 	int				readed;
 
-	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
 	readed = 1;
 	get_stash(fd, &stash[fd], &readed);
@@ -30,6 +30,8 @@ char	*get_next_line(int fd)
 		free_stash(&stash[fd]);
 		return (NULL);
 	}
+	if (readed == -1)
+		return (line);
 	if (readed != 0)
 		clean_stash(&stash[fd], readed);
 	else
@@ -50,9 +52,15 @@ void	get_stash(int fd, t_list **stash, int *readed)
 			return ;
 		}
 		*readed = read(fd, buffer, BUFFER_SIZE);
-		if (*readed == 0 || *readed == -1)
+		if (*readed == 0)
 		{
 			free(buffer);
+			return ;
+		}
+		if (*readed == -1)
+		{
+			free(buffer);
+			free_stash(stash);
 			return ;
 		}
 		buffer[*readed] = 0;
