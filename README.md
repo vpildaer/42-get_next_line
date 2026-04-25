@@ -60,7 +60,7 @@ int	main(void)
 	char	*line;
 
 	fd = open("text.txt", O_RDONLY)
-	while ((line = get_next))
+	while ((line = get_next_line(fd)))
 	{
 		printf("%s", line);
 		free(line);
