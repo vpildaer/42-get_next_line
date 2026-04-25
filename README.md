@@ -124,7 +124,7 @@ This is a very useful tool when programming in C language, in which memory manag
 
 ## Resources
 
-* [Handling a File by its Descriptor in C](#https://www.codequoi.com/en/handling-a-file-by-its-descriptor-in-c/)
+* [Handling a File by its Descriptor in C](https://www.codequoi.com/en/handling-a-file-by-its-descriptor-in-c/)
 * [Open function](https://man7.org/linux/man-pages/man2/open.2.html)
 * [Read function](https://man7.org/linux/man-pages/man2/read.2.html)
 * [Close function](https://man7.org/linux/man-pages/man2/close.2.html)
