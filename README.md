@@ -7,6 +7,7 @@ This project is about coding a function that returns a line read from a file des
 ## Status
 
 Started on April 19th 2026.
+Validated on April 25th with 125%.
 
 ## Table of Contents
 
