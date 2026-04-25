@@ -51,6 +51,7 @@ Thus each file descriptor has "its own static linked list".
 Let's consider a file `text.txt` containing one or multiple lines, and the following main function :
 
 ```
+#include <fcntl.h>
 #include <stdio.h>
 
 int	main(void)
@@ -97,6 +98,8 @@ One of the key challenges of this project is to be able to handle memory correct
 That means using [free](https://man7.org/linux/man-pages/man3/free.3p.html) on every block of memory that has been allocated with [malloc](https://man7.org/linux/man-pages/man3/free.3.html).
 
 Considering linked lists, that means freeing every node of a list as well as every content of each node. 
+
+Since we are using a **static** variable, it is important to read until the EOF (end of file) to make sure there is no memory that is still reachable. If we stop before the EOF, some blocks of memory will be "still reachable" because the static variable will still be storing some characters from the last call of the function. 
 
 ### How to use `valgrind`
 
